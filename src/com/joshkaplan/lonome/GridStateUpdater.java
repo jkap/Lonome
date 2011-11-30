@@ -37,6 +37,7 @@ public class GridStateUpdater extends Thread {
 				data[0] = (byte) 144;
 				data[1] = (byte) Grid.getNoteForPoint(x);
 				data[2] = (byte) (Lonome.grid.getStateForPoint(x) * Lonome.velocity);
+				Lonome.sendMidiData(data);
 			}
 		}
 
