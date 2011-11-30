@@ -59,7 +59,17 @@ public class JKOscListener implements OscEventListener {
 		} else if (theMessage.checkAddrPattern(this.prefix + GRIDLEDALLADDRESS)) {
 			this.handleLedAllRequest(theMessage.get(0).intValue());
 		} else if (theMessage.checkAddrPattern(prefix + GRIDLEDMAPADDRESS)) {
-			// TODO: implement this
+			int x_offset = theMessage.get(0).intValue();
+			int y_offset = theMessage.get(1).intValue();
+			int[] s = {theMessage.get(2).intValue(),
+					theMessage.get(3).intValue(),
+					theMessage.get(4).intValue(),
+					theMessage.get(5).intValue(),
+					theMessage.get(6).intValue(),
+					theMessage.get(7).intValue(),
+					theMessage.get(8).intValue(),
+					theMessage.get(9).intValue()};
+			this.handleMapRequest(x_offset, y_offset, s);
 		} else if (theMessage.checkAddrPattern(prefix + GRIDLEDROWADDRESS)) {
 			// TODO: implement this
 		} else if (theMessage.checkAddrPattern(prefix + GRIDLEDCOLADDRESS)) {
@@ -152,6 +162,10 @@ public class JKOscListener implements OscEventListener {
 		OscMessage prefixMessage = new OscMessage(SYSPREFIXADDRESS);
 		prefixMessage.add(prefix);
 		Lonome.sendOscDataToHostAndPort(prefixMessage, host, port);
+	}
+	
+	public void handleMapRequest(int x_offset, int y_offset, int[] s) {
+		// TODO: Implement this
 	}
 
 	public void handleDestPortChange(int newPort) {
