@@ -57,8 +57,7 @@ public class JKOscListener implements OscEventListener {
 			this.handleLedSetRequest(theMessage.get(0).intValue(), theMessage
 					.get(1).intValue(), theMessage.get(2).intValue());
 		} else if (theMessage.checkAddrPattern(this.prefix + GRIDLEDALLADDRESS)) {
-			// this.handleLedAllRequest(theMessage.get(0).intValue());
-			// TODO: need to implement this
+			this.handleLedAllRequest(theMessage.get(0).intValue());
 		} else if (theMessage.checkAddrPattern(prefix + GRIDLEDMAPADDRESS)) {
 			// TODO: implement this
 		} else if (theMessage.checkAddrPattern(prefix + GRIDLEDROWADDRESS)) {
