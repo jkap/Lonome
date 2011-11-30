@@ -82,11 +82,26 @@ public class JKOscListener implements OscEventListener {
 
 	public void handleLedAllRequest(int s) {
 		o.println("got a led set all request. s:" + s);
+		/*
 		byte[] data = new byte[3];
 		data[0] = (byte) 144;
 		data[2] = (byte) ((Lonome.velocity - 12) * s);
 		for (int i = 0; i < 64; i++) {
 			data[1] = (byte) Grid.getNoteForIndex(i);
+			Lonome.sendMidiData(data);
+		}
+		*/
+		if(s == 0) {
+			byte[] data = new byte[3];
+			data[0] = (byte) 176;
+			data[1] = (byte) 0;
+			data[2] = (byte) 0;
+			Lonome.sendMidiData(data);
+		} else {
+			byte[] data = new byte[3];
+			data[0] = (byte) 176;
+			data[1] = (byte) 0;
+			data[2] = (byte) 127;
 			Lonome.sendMidiData(data);
 		}
 
