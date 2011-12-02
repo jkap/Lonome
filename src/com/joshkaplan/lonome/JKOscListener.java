@@ -91,15 +91,12 @@ public class JKOscListener implements OscEventListener {
 
 	public void handleLedAllRequest(int s) {
 		o.println("got a led set all request. s:" + s);
-		/*
-		byte[] data = new byte[3];
-		data[0] = (byte) 144;
-		data[2] = (byte) ((Lonome.velocity - 12) * s);
 		for (int i = 0; i < 64; i++) {
-			data[1] = (byte) Grid.getNoteForIndex(i);
-			Lonome.sendMidiData(data);
+			Point p = Grid.getPointForIndex(i);
+			Lonome.grid.setStateForPoint(s, p);
+			Lonome.updater.queue.push(p);
 		}
-		*/
+		/*
 		if(s == 0) {
 			byte[] data = new byte[3];
 			data[0] = (byte) 176;
@@ -112,7 +109,7 @@ public class JKOscListener implements OscEventListener {
 			data[1] = (byte) 0;
 			data[2] = (byte) 127;
 			Lonome.sendMidiData(data);
-		}
+		}*/
 
 	}
 
@@ -165,7 +162,19 @@ public class JKOscListener implements OscEventListener {
 	}
 	
 	public void handleMapRequest(int x_offset, int y_offset, int[] s) {
-		// TODO: Implement this
+		if(x_offset == 0 && y_offset == 0) {
+			for(int i = 0; i < s.length; i++) {
+				int row_operator = s[i];
+				for(int j = 7; j >= 0; j--) {
+					int mask = 1;
+					int state = (mask & row_operator);
+					row_operator = row_operator >> 1;
+					Point p = new Point();
+					p.setXY(j, i);
+					Lonome.grid.setStateForPoint(state, p);
+				}
+			}
+		}
 	}
 
 	public void handleDestPortChange(int newPort) {

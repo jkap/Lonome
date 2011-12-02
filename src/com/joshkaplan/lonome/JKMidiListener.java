@@ -28,7 +28,7 @@ public class JKMidiListener implements MidiListener {
 	public void echoReceivedData(byte[] data) {
 		if (data[0] == (byte) 0x9c) {
 			data[0] = (byte) 0x9c;
-			data[2] = (byte) 60;
+			data[2] = (byte) Lonome.velocity;
 			o.println("note on");
 		} else if (data[0] == (byte) 0x8c) {
 			data[0] = (byte) 0x9c;

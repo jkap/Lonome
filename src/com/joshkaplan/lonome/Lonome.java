@@ -35,7 +35,7 @@ public class Lonome {
 	static MidiOutput output;
 
 	static String serialNumber = "Launchpad";
-	static int velocity = 60;
+	static int velocity = 48;
 	static int localPort = 9024;
 
 	/**
@@ -73,11 +73,12 @@ public class Lonome {
 			handleError(e);
 		}
 
-		updater.run();
+		updater.start();
 
 		try {
 			registration = DNSSD.register(serialNumber, "_monome-osc._udp",
 					localPort, registerListener);
+			o.println("registered bonjour");
 		} catch (Exception e) {
 			handleError(e);
 		}

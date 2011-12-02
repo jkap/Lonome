@@ -42,7 +42,15 @@ public class Grid {
 		return gridNotes[point.getRow()][point.getCol()];
 
 	}
-
+	
+	public static Point getPointForIndex(int index) {
+		int row = index / 8;
+		int col = index % 8;
+		Point p = new Point();
+		p.setRowCol(row, col);
+		return p;
+	}
+	
 	/**
 	 * 
 	 * @param search
