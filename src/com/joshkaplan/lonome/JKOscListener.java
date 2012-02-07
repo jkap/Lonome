@@ -61,14 +61,11 @@ public class JKOscListener implements OscEventListener {
 		} else if (theMessage.checkAddrPattern(prefix + GRIDLEDMAPADDRESS)) {
 			int x_offset = theMessage.get(0).intValue();
 			int y_offset = theMessage.get(1).intValue();
-			int[] s = {theMessage.get(2).intValue(),
-					theMessage.get(3).intValue(),
-					theMessage.get(4).intValue(),
-					theMessage.get(5).intValue(),
-					theMessage.get(6).intValue(),
-					theMessage.get(7).intValue(),
-					theMessage.get(8).intValue(),
-					theMessage.get(9).intValue()};
+			int[] s = { theMessage.get(2).intValue(),
+					theMessage.get(3).intValue(), theMessage.get(4).intValue(),
+					theMessage.get(5).intValue(), theMessage.get(6).intValue(),
+					theMessage.get(7).intValue(), theMessage.get(8).intValue(),
+					theMessage.get(9).intValue() };
 			this.handleMapRequest(x_offset, y_offset, s);
 		} else if (theMessage.checkAddrPattern(prefix + GRIDLEDROWADDRESS)) {
 			// TODO: implement this
@@ -96,21 +93,6 @@ public class JKOscListener implements OscEventListener {
 			Lonome.grid.setStateForPoint(s, p);
 			Lonome.updater.queue.push(p);
 		}
-		/*
-		if(s == 0) {
-			byte[] data = new byte[3];
-			data[0] = (byte) 176;
-			data[1] = (byte) 0;
-			data[2] = (byte) 0;
-			Lonome.sendMidiData(data);
-		} else {
-			byte[] data = new byte[3];
-			data[0] = (byte) 176;
-			data[1] = (byte) 0;
-			data[2] = (byte) 127;
-			Lonome.sendMidiData(data);
-		}*/
-
 	}
 
 	public void handleLedSetRequest(int x, int y, int s) {
@@ -121,18 +103,6 @@ public class JKOscListener implements OscEventListener {
 
 		Lonome.grid.setStateForPoint(s, gridLoc);
 		Lonome.updater.queue.push(gridLoc);
-
-		/*
-		 * int pitch = Grid.getNoteForPoint(gridLoc);
-		 * 
-		 * byte[] data = new byte[3]; data[0] = -112; data[1] = (byte) pitch;
-		 * data[2] = (byte) (Lonome.velocity * s);
-		 * 
-		 * o.println("Sending midi data:" + data[0] + ", " + data[1] + ", " +
-		 * data[2]);
-		 * 
-		 * Lonome.sendMidiData(data);
-		 */
 	}
 
 	public void handleRotationChange(int newRotation) {
@@ -160,12 +130,12 @@ public class JKOscListener implements OscEventListener {
 		prefixMessage.add(prefix);
 		Lonome.sendOscDataToHostAndPort(prefixMessage, host, port);
 	}
-	
+
 	public void handleMapRequest(int x_offset, int y_offset, int[] s) {
-		if(x_offset == 0 && y_offset == 0) {
-			for(int i = 0; i < s.length; i++) {
+		if (x_offset == 0 && y_offset == 0) {
+			for (int i = 0; i < s.length; i++) {
 				int row_operator = s[i];
-				for(int j = 7; j >= 0; j--) {
+				for (int j = 7; j >= 0; j--) {
 					int mask = 1;
 					int state = (mask & row_operator);
 					row_operator = row_operator >> 1;

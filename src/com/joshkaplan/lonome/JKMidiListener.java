@@ -13,10 +13,6 @@ public class JKMidiListener implements MidiListener {
 	 * @param data
 	 */
 	public void midiInput(byte[] data) {
-		// o.println("woo! got some midi input!");
-		// o.println("grid location:"+Grid.getPointForNote((int)data[1]).toString());
-
-		// this.echoReceivedData(data); // only for testing, not really practical
 		this.processKeyPress(data);
 
 	}
