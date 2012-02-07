@@ -1,10 +1,13 @@
 package com.joshkaplan.lonome;
 
+import java.io.PrintStream;
 import java.util.Stack;
 
 public class GridStateUpdater extends Thread {
 	
 	public Stack<Point> queue = new Stack<Point>();
+	
+	static PrintStream o = System.out;
 
 	int currentUpdateBuffer = 0;
 	boolean updated = false;
@@ -40,7 +43,7 @@ public class GridStateUpdater extends Thread {
 				Lonome.sendMidiData(data);
 			}
 			/*if(updated) {
-				System.out.println("queue empty, flipping buffer");
+				o.println("queue empty, flipping buffer");
 				updated = false;
 				byte[] bufferSwitchData1 = new byte[3];
 				bufferSwitchData1[0] = (byte) 144;
