@@ -7,7 +7,7 @@ public class GridStateUpdater extends Thread {
 	
 	public Stack<Point> queue = new Stack<Point>();
 	
-	static PrintStream o = System.out;
+	static PrintStream o = Lonome.o;
 
 	int currentUpdateBuffer = 0;
 	boolean updated = false;

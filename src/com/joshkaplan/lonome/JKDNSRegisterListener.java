@@ -8,7 +8,7 @@ import com.apple.dnssd.RegisterListener;
 
 public class JKDNSRegisterListener implements RegisterListener {
 
-	static PrintStream o = System.out;
+	static PrintStream o = Lonome.o;
 
 	@Override
 	public void operationFailed(DNSSDService service, int errorCode) {

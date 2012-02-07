@@ -7,7 +7,7 @@ import de.humatic.mmj.MidiListener;
 
 public class JKMidiListener implements MidiListener {
 
-	static PrintStream o = System.out;
+	static PrintStream o = Lonome.o;
 
 	/**
 	 * @param data

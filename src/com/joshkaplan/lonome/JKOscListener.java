@@ -8,7 +8,7 @@ import oscP5.OscStatus;
 
 public class JKOscListener implements OscEventListener {
 
-	static PrintStream o = System.out;
+	static PrintStream o = Lonome.o;
 
 	int destPort;
 	String destHost = "127.0.0.1";
