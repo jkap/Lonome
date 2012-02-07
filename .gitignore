@@ -2,6 +2,8 @@
 
 # Package Files #
 *.jar
+!mmj.jar
+!oscP5.jar
 *.war
 *.ear
 *.pydevproject
